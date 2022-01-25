@@ -7,7 +7,7 @@
 	<title>chat</title>
 
 	<style>
-		body {
+		main {
 			margin: 0;
 			display: grid;
 			grid-template-columns: 300px 1fr;
@@ -32,41 +32,45 @@
 			padding: 0 10px;
 			box-sizing: border-box;
 		}
-		.messages__list {
+		.mess__list {
 			max-height: 90vh;
 			overflow: auto;
 		}
-		.messages__item {
+		.mess__item {
 			display: flex;
 			flex-direction: column;
 			padding: 10px;
 			border: 1px dashed #ccc;
 			margin-bottom: 10px;
 		}
-		.messages__name {
+		.mess__name {
 			font-size: 18px;
 			font-weight: bold;
 		}
-	</style>
+		</style>
 </head>
-<body>
-	<form class="form">
-		<input type="text" placeholder="your name">
-		<textarea cols="30" rows="10" placeholder="your text"></textarea>
-		<button>send message</button>
-	</form>
-	<div class="messages">
-		<div class="messages__list">
-			<!-- <div class="messages__item">
-				<div class="messages__name">Sanya</div>
-				<div class="messages__text">Lorem ipsum dolor sit amet.</div>
-			</div> -->
-		</div>
+<body style="margin: 0;">
+	<div class="container">
+		<main class="main">
+			<form class="form">
+				<input type="text" placeholder="your name">
+				<textarea cols="30" rows="10" placeholder="your text"></textarea>
+				<button>send message</button>
+			</form>
+			<div class="mess">
+				<div class="mess__list">
+					<div class="mess__item">
+						<div class="mess__name">Sanya</div>
+						<div class="mess__text">Lorem ipsum dolor sit amet.</div>
+					</div>
+				</div>
+			</div>
+		</main>
 	</div>
 
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
-		let socket = io()
+		const socket = io()
 
 		const form = document.querySelector('.form')
 
@@ -82,12 +86,12 @@
 		})
 
 		socket.on('chat message', msg => {
-			const list = document.querySelector('.messages__list')
+			const list = document.querySelector('.mess__list')
 			const item = document.createElement('div')
-			item.classList.add('messages__item')
+			item.classList.add('mess__item')
 			item.innerHTML = `
-				<div class="messages__name">${msg.name}</div>
-				<div class="messages__text">${msg.text}</div>`
+				<div class="mess__name">${msg.name}</div>
+				<div class="mess__text">${msg.text}</div>`
 
 			list.append(item)
 		})

@@ -1,21 +1,25 @@
+'use strict'
+
 const express = require('express')
-const app = express()
-const http = require('http')
-const server = http.createServer(app)
-const { Server } = require("socket.io")
-const io = new Server(server)
+const socketIO = require('socket.io')
 
-app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/client/index.html')
-})
+const PORT = process.env.PORT || 3000
+const INDEX = '/index.html'
 
+const server = express()
+	.use((req, res) => res.sendFile(INDEX, {
+		root: __dirname
+	}))
+	.listen(PORT, () => console.log(`Listening on ${PORT}`))
+
+const io = socketIO(server)
+
+// private messages
+// https://socket.io/get-started/private-messaging-part-1/#private-messaging
 io.on('connection', (socket) => {
-	socket.on('chat message', (msg) => {
-		io.emit('chat message', msg)
-	})
-})
+	console.log('Client connected')
 
+	socket.on('chat message', msg => io.emit('chat message', msg))
 
-server.listen(3000, () => {
-	console.log('listening on *:3000')
+	socket.on('disconnect', () => console.log('Client disconnected'))
 })
