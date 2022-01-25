@@ -16,10 +16,13 @@ const io = socketIO(server)
 
 // private messages
 // https://socket.io/get-started/private-messaging-part-1/#private-messaging
-io.on('connection', (socket) => {
+io.on('connection', socket => {
 	console.log('Client connected')
 
-	socket.on('chat message', msg => io.emit('chat message', msg))
+	console.log('id: ', socket.id)
+	console.log('rooms: ', socket.adapter.rooms)
+	console.log('sids: ', socket.adapter.sids)
 
+	socket.on('chat message', msg => io.emit('chat message', msg))
 	socket.on('disconnect', () => console.log('Client disconnected'))
 })
