@@ -7,12 +7,11 @@
 	<title>chat</title>
 
 	<style>
-		main {
-			margin: 0;
+		.main {
+			padding: 20px;
 			display: grid;
 			grid-template-columns: 300px 1fr;
 			gap: 40px;
-			padding: 40px 0;
 			max-width: 1200px;
 			margin: 0 auto;
 
@@ -47,23 +46,23 @@
 			font-size: 18px;
 			font-weight: bold;
 		}
-		</style>
+
+		.rooms__list li {margin-bottom: 5px;}
+	</style>
 </head>
 <body style="margin: 0;">
 	<div class="container">
 		<main class="main">
-			<form class="form">
-				<input type="text" placeholder="your name">
-				<textarea cols="30" rows="10" placeholder="your text"></textarea>
-				<button>send message</button>
-			</form>
+			<section>
+				<form class="form">
+					<input type="text" placeholder="your name">
+					<textarea cols="30" rows="10" placeholder="your text"></textarea>
+					<button>send message</button>
+				</form>
+				<ul class="rooms__list"></ul>
+			</section>
 			<div class="mess">
-				<div class="mess__list">
-					<div class="mess__item">
-						<div class="mess__name">Sanya</div>
-						<div class="mess__text">Lorem ipsum dolor sit amet.</div>
-					</div>
-				</div>
+				<div class="mess__list"></div>
 			</div>
 		</main>
 	</div>
@@ -73,6 +72,8 @@
 		const socket = io()
 
 		const form = document.querySelector('.form')
+		const list = document.querySelector('.mess__list')
+		const rooms_list = document.querySelector('.rooms__list')
 
 		form.addEventListener('submit', ev => {
 			ev.preventDefault()
@@ -85,15 +86,42 @@
 			}
 		})
 
+
 		socket.on('chat message', msg => {
-			const list = document.querySelector('.mess__list')
 			const item = document.createElement('div')
+
 			item.classList.add('mess__item')
 			item.innerHTML = `
 				<div class="mess__name">${msg.name}</div>
 				<div class="mess__text">${msg.text}</div>`
 
 			list.append(item)
+			list.scrollTo({ top: 10000, behavior: 'smooth' })
+		})
+
+		socket.on('info_message', ({ type }) => {
+			const text = type === 'connected' ? 'Кто-то вошел в чат' : 'Кто-то вышел из чата'
+			const color = type === 'connected' ? '#3bbd2b' : '#bd2b46'
+
+			const item = document.createElement('div')
+			item.classList.add('mess__item')
+			item.innerHTML = `<div class="mess__text"><strong style="color:${color}">${text}</strong></div>`
+
+			list.append(item)
+			list.scrollTo({ top: 10000, behavior: 'smooth' })
+		})
+
+		socket.on('send_rooms', rooms => {
+			console.log('all rooms: ', rooms);
+
+			[...rooms.my_rooms, ...rooms.io].forEach(room => {
+				const item = document.createElement('li')
+				item.innerHTML = `<a href="#">${room}</a>`
+				
+				rooms_list.append(item)
+
+				item.addEventListener('click', () => socket.emit('zashel_v_hatu', {room}))
+			})
 		})
 	</script>
 </body>

@@ -4,12 +4,11 @@ const express = require('express')
 const socketIO = require('socket.io')
 
 const PORT = process.env.PORT || 3000
-const INDEX = '/index.html'
+
+const MY_ROOMS = ['room 1', 'room 2']
 
 const server = express()
-	.use((req, res) => res.sendFile(INDEX, {
-		root: __dirname
-	}))
+	.use((req, res) => res.sendFile('/index.html', { root: __dirname }))
 	.listen(PORT, () => console.log(`Listening on ${PORT}`))
 
 const io = socketIO(server)
@@ -19,10 +18,31 @@ const io = socketIO(server)
 io.on('connection', socket => {
 	console.log('Client connected')
 
-	console.log('id: ', socket.id)
-	console.log('rooms: ', socket.adapter.rooms)
-	console.log('sids: ', socket.adapter.sids)
+	// console.log('id: ', socket.id)
+	// console.log('rooms: ', socket.adapter.rooms)
+	// console.log('sids: ', socket.adapter.sids)
 
+	// просто сообщения
 	socket.on('chat message', msg => io.emit('chat message', msg))
-	socket.on('disconnect', () => console.log('Client disconnected'))
+
+	socket.on('zashel_v_hatu', ({ room }) => {
+		socket.join(room)
+		console.log(socket);
+	})
+
+	// io.emit(...) - отправить всем
+	// socket.broadcast.emit(...) - отпраить всем кроме подключившегося
+
+	// уведомляем всех о новом подключении
+	socket.broadcast.emit('info_message', {type: 'connected'})
+
+	// дискотнкт
+	socket.on('disconnect', () => {
+		console.log('Client disconnected')
+
+		// уведомляем всех о дисконекте
+		socket.broadcast.emit('info_message', {type: 'disconnected'})
+	})
+
+	io.emit('send_rooms', {my_rooms: MY_ROOMS, io: Object.keys(socket.adapter.rooms)})
 })
