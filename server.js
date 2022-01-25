@@ -18,6 +18,8 @@ const io = socketIO(server)
 io.on('connection', socket => {
 	console.log('Client connected')
 
+	// console.log(socket)
+
 	// console.log('id: ', socket.id)
 	// console.log('rooms: ', socket.adapter.rooms)
 	// console.log('sids: ', socket.adapter.sids)
@@ -27,8 +29,10 @@ io.on('connection', socket => {
 
 	socket.on('zashel_v_hatu', ({ room }) => {
 		socket.join(room)
-		console.log(socket);
 	})
+
+	// users count
+	io.emit('count_users', socket.conn.server.clientsCount)
 
 	// io.emit(...) - отправить всем
 	// socket.broadcast.emit(...) - отпраить всем кроме подключившегося
@@ -42,6 +46,9 @@ io.on('connection', socket => {
 
 		// уведомляем всех о дисконекте
 		socket.broadcast.emit('info_message', {type: 'disconnected'})
+
+		// users count
+		io.emit('count_users', socket.conn.server.clientsCount)
 	})
 
 	io.emit('send_rooms', {my_rooms: MY_ROOMS, io: Object.keys(socket.adapter.rooms)})

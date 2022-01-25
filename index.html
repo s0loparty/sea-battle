@@ -123,6 +123,8 @@
 				item.addEventListener('click', () => socket.emit('zashel_v_hatu', {room}))
 			})
 		})
+
+		socket.on('count_users', number => document.title = `chat | ${number} users`)
 	</script>
 </body>
 </html>
