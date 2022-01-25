@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>chat</title>
+
+	<style>
+		body {
+			margin: 0;
+			display: grid;
+			grid-template-columns: 300px 1fr;
+			gap: 40px;
+			padding: 40px 0;
+			max-width: 1200px;
+			margin: 0 auto;
+
+			font-family: sans-serif;
+		}
+		.form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			max-width: 300px;
+		}
+		.form input, .form textarea {
+			min-height: 40px;
+			border: 1px solid rgb(161, 161, 161);
+			width: 100%;
+			margin-bottom: 10px;
+			padding: 0 10px;
+			box-sizing: border-box;
+		}
+		.messages__list {
+			max-height: 90vh;
+			overflow: auto;
+		}
+		.messages__item {
+			display: flex;
+			flex-direction: column;
+			padding: 10px;
+			border: 1px dashed #ccc;
+			margin-bottom: 10px;
+		}
+		.messages__name {
+			font-size: 18px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<form class="form">
+		<input type="text" placeholder="your name">
+		<textarea cols="30" rows="10" placeholder="your text"></textarea>
+		<button>send message</button>
+	</form>
+	<div class="messages">
+		<div class="messages__list">
+			<!-- <div class="messages__item">
+				<div class="messages__name">Sanya</div>
+				<div class="messages__text">Lorem ipsum dolor sit amet.</div>
+			</div> -->
+		</div>
+	</div>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		let socket = io()
+
+		const form = document.querySelector('.form')
+
+		form.addEventListener('submit', ev => {
+			ev.preventDefault()
+
+			const name = ev.target.children[0].value
+			const text = ev.target.children[1].value
+
+			if (name && text) {
+				socket.emit('chat message', {name, text})
+			}
+		})
+
+		socket.on('chat message', msg => {
+			const list = document.querySelector('.messages__list')
+			const item = document.createElement('div')
+			item.classList.add('messages__item')
+			item.innerHTML = `
+				<div class="messages__name">${msg.name}</div>
+				<div class="messages__text">${msg.text}</div>`
+
+			list.append(item)
+		})
+	</script>
+</body>
+</html>
