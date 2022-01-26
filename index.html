@@ -31,6 +31,10 @@
 			padding: 0 10px;
 			box-sizing: border-box;
 		}
+		.form textarea {padding: 10px;}
+		.form input:focus, .form textarea:focus {
+			outline: none;
+		}
 		.mess__list {
 			max-height: 90vh;
 			overflow: auto;
@@ -47,7 +51,7 @@
 			font-weight: bold;
 		}
 
-		.rooms__list li {margin-bottom: 5px;}
+		.rooms__list li {margin-bottom: 10px;}
 	</style>
 </head>
 <body style="margin: 0;">
@@ -116,14 +120,16 @@
 
 			rooms_list.innerHTML = ''
 
-			const test = [...rooms.my_rooms, ...rooms.io]
-			test.forEach(room => {
+			rooms.forEach(room => {
 				const item = document.createElement('li')
 				item.innerHTML = `<a href="#">${room}</a>`
 				
 				rooms_list.append(item)
 
-				item.addEventListener('click', () => socket.emit('zashel_v_hatu', {room}))
+				item.addEventListener('click', ev => {
+					ev.preventDefault()
+					socket.emit('zashel_v_hatu', {room})
+				})
 			})
 		})
 

@@ -5,7 +5,7 @@ const socketIO = require('socket.io')
 
 const PORT = process.env.PORT || 3000
 
-const MY_ROOMS = ['room 1', 'room 2']
+const MY_ROOMS = ['Гостевая', 'Комната #1', 'Комната #2']
 
 const server = express()
 	.use((req, res) => res.sendFile('/index.html', { root: __dirname }))
@@ -29,6 +29,7 @@ io.on('connection', socket => {
 
 	socket.on('zashel_v_hatu', ({ room }) => {
 		socket.join(room)
+		console.log(room);
 	})
 
 	// users count
@@ -51,5 +52,5 @@ io.on('connection', socket => {
 		io.emit('count_users', socket.conn.server.clientsCount)
 	})
 
-	io.emit('send_rooms', {my_rooms: MY_ROOMS, io: Object.keys(socket.adapter.rooms)})
+	io.emit('send_rooms', MY_ROOMS)
 })
