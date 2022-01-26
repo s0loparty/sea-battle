@@ -112,9 +112,12 @@
 		})
 
 		socket.on('send_rooms', rooms => {
-			console.log('all rooms: ', rooms);
+			console.log('all rooms: ', rooms)
 
-			[...rooms.my_rooms, ...rooms.io].forEach(room => {
+			rooms_list.innerHTML = ''
+
+			const test = [...rooms.my_rooms, ...rooms.io]
+			test.forEach(room => {
 				const item = document.createElement('li')
 				item.innerHTML = `<a href="#">${room}</a>`
 				
