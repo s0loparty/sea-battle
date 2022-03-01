@@ -4,136 +4,301 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>chat</title>
+	<title>Морской бой</title>
 
-	<style>
-		.main {
-			padding: 20px;
-			display: grid;
-			grid-template-columns: 300px 1fr;
-			gap: 40px;
-			max-width: 1200px;
-			margin: 0 auto;
+	<link rel="stylesheet" href="./css/normalize.min.css">
+	<link rel="stylesheet" href="./css/main.min.css">
 
-			font-family: sans-serif;
-		}
-		.form {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			max-width: 300px;
-		}
-		.form input, .form textarea {
-			min-height: 40px;
-			border: 1px solid rgb(161, 161, 161);
-			width: 100%;
-			margin-bottom: 10px;
-			padding: 0 10px;
-			box-sizing: border-box;
-		}
-		.form textarea {padding: 10px;}
-		.form input:focus, .form textarea:focus {
-			outline: none;
-		}
-		.mess__list {
-			max-height: 90vh;
-			overflow: auto;
-		}
-		.mess__item {
-			display: flex;
-			flex-direction: column;
-			padding: 10px;
-			border: 1px dashed #ccc;
-			margin-bottom: 10px;
-		}
-		.mess__name {
-			font-size: 18px;
-			font-weight: bold;
-		}
-
-		.rooms__list li {margin-bottom: 10px;}
-	</style>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body style="margin: 0;">
+<body>
 	<div class="container">
-		<main class="main">
-			<section>
-				<form class="form">
-					<input type="text" placeholder="your name">
-					<textarea cols="30" rows="10" placeholder="your text"></textarea>
-					<button>send message</button>
-				</form>
-				<ul class="rooms__list"></ul>
-			</section>
-			<div class="mess">
-				<div class="mess__list"></div>
+		<div class="header">
+			<p>header</p>
+		</div>
+		<div class="main">
+			<div class="space">
+				<div class="space__wrap">
+					<div class="space__box space__box--enemy">
+						<div class="space__number-list">
+							<div class="space__number-item">1</div>
+							<div class="space__number-item">2</div>
+							<div class="space__number-item">3</div>
+							<div class="space__number-item">4</div>
+							<div class="space__number-item">5</div>
+							<div class="space__number-item">6</div>
+							<div class="space__number-item">7</div>
+							<div class="space__number-item">8</div>
+							<div class="space__number-item">9</div>
+							<div class="space__number-item">10</div>
+						</div>
+						<div class="space__inner-wrap">
+							<div class="space__latter-list">
+								<div class="space__latter-item">А</div>
+								<div class="space__latter-item">Б</div>
+								<div class="space__latter-item">В</div>
+								<div class="space__latter-item">Г</div>
+								<div class="space__latter-item">Д</div>
+								<div class="space__latter-item">Е</div>
+								<div class="space__latter-item">Ж</div>
+								<div class="space__latter-item">З</div>
+								<div class="space__latter-item">И</div>
+								<div class="space__latter-item">К</div>
+							</div>
+							<div class="space__fight-wrap">
+								<div class="space__fight-list">
+									<div class="space__fight-item space__fight-item--miss"></div>
+									<div class="space__fight-item space__fight-item--damage"></div>
+									<div class="space__fight-item space__fight-item--killed"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="space__box space__box--player">
+						<div class="space__number-list">
+							<div class="space__number-item">1</div>
+							<div class="space__number-item">2</div>
+							<div class="space__number-item">3</div>
+							<div class="space__number-item">4</div>
+							<div class="space__number-item">5</div>
+							<div class="space__number-item">6</div>
+							<div class="space__number-item">7</div>
+							<div class="space__number-item">8</div>
+							<div class="space__number-item">9</div>
+							<div class="space__number-item">10</div>
+						</div>
+						<div class="space__inner-wrap">
+							<div class="space__latter-list">
+								<div class="space__latter-item">А</div>
+								<div class="space__latter-item">Б</div>
+								<div class="space__latter-item">В</div>
+								<div class="space__latter-item">Г</div>
+								<div class="space__latter-item">Д</div>
+								<div class="space__latter-item">Е</div>
+								<div class="space__latter-item">Ж</div>
+								<div class="space__latter-item">З</div>
+								<div class="space__latter-item">И</div>
+								<div class="space__latter-item">К</div>
+							</div>
+							<div class="space__fight-wrap">
+								<div class="space__fight-list">
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+									<div class="space__fight-item"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		</main>
+			<div class="ships">
+				<div class="ships__wrap">
+					<div class="ships__list">ships list</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<p>footer</p>
+		</div>
 	</div>
 
-	<script src="/socket.io/socket.io.js"></script>
-	<script>
-		const socket = io()
-
-		const form = document.querySelector('.form')
-		const list = document.querySelector('.mess__list')
-		const rooms_list = document.querySelector('.rooms__list')
-
-		form.addEventListener('submit', ev => {
-			ev.preventDefault()
-
-			const name = ev.target.children[0].value
-			const text = ev.target.children[1].value
-
-			if (name && text) {
-				socket.emit('chat message', {name, text})
-			}
-		})
-
-
-		socket.on('chat message', msg => {
-			const item = document.createElement('div')
-
-			item.classList.add('mess__item')
-			item.innerHTML = `
-				<div class="mess__name">${msg.name}</div>
-				<div class="mess__text">${msg.text}</div>`
-
-			list.append(item)
-			list.scrollTo({ top: 10000, behavior: 'smooth' })
-		})
-
-		socket.on('info_message', ({ type }) => {
-			const text = type === 'connected' ? 'Кто-то вошел в чат' : 'Кто-то вышел из чата'
-			const color = type === 'connected' ? '#3bbd2b' : '#bd2b46'
-
-			const item = document.createElement('div')
-			item.classList.add('mess__item')
-			item.innerHTML = `<div class="mess__text"><strong style="color:${color}">${text}</strong></div>`
-
-			list.append(item)
-			list.scrollTo({ top: 10000, behavior: 'smooth' })
-		})
-
-		socket.on('send_rooms', rooms => {
-			console.log('all rooms: ', rooms)
-
-			rooms_list.innerHTML = ''
-
-			rooms.forEach(room => {
-				const item = document.createElement('li')
-				item.innerHTML = `<a href="#">${room}</a>`
-				
-				rooms_list.append(item)
-
-				item.addEventListener('click', ev => {
-					ev.preventDefault()
-					socket.emit('zashel_v_hatu', {room})
-				})
-			})
-		})
-
-		socket.on('count_users', number => document.title = `chat | ${number} users`)
-	</script>
+	<script src="/node-server/node_modules/socket.io-client/dist/socket.io.min.js"></script>
+	<script src="app.js"></script>
 </body>
 </html>

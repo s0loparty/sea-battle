@@ -1,0 +1,114 @@
+.space {
+	&__wrap {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--space);
+
+		min-width: calc(var(--ship-size) * 11);
+	}
+	&__inner-wrap {
+		display: grid;
+		grid-template-columns: 40px 1fr;
+	}
+	&__box {
+		&--enemy {}
+	}
+
+	// numbers
+	&__number-list {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, var(--ship-size));
+
+		padding-left: var(--ship-size);
+		height: var(--ship-size);
+	}
+	&__number-item {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+
+		font-weight: bold;
+		font-size: 1.2rem;
+		color: var(--color-dark);
+	}
+
+	// latters
+	&__latter-list {
+		display: inline-flex;
+		flex-direction: column;
+	}
+	&__latter-item {
+		width: var(--ship-size);
+		height: var(--ship-size);
+
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+
+		font-weight: bold;
+		font-size: 1.2rem;
+		color: var(--color-dark);
+	}
+
+	// fight
+	&__fight-wrap {}
+	&__fight-list {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, var(--ship-size));
+	}
+	&__fight-item {
+		width: var(--ship-size);
+		height: var(--ship-size);
+		background: var(--color-light);
+		box-shadow: inset 0 0 1px var(--color-dark);
+
+		position: relative;
+
+		&:hover {
+			background: var(--color-green);
+		}
+
+		&--miss {
+			&:before {
+				position: absolute;
+				content: '';
+				width: 20px;
+				height: 20px;
+				top: 10px;
+				left: 10px;
+				border-radius: 50%;
+				background-color: var(--color-gray);
+			}
+		}
+		&--damage {
+			&:before, &:after {
+				position: absolute;
+				content: '';
+				width: 22px;
+				height: 4px;
+				border-radius: 8px;
+				background-color: var(--color-dark);
+				top: 19px;
+				left: 9px;
+			}
+			&:before {
+				transform: rotate(45deg);
+			}
+			&:after {
+				transform: rotate(-45deg);
+			}
+		}
+		&--killed {
+			&:before {
+				position: absolute;
+				content: '';
+				width: 20px;
+				height: 20px;
+				top: 10px;
+				left: 10px;
+				border-radius: 50%;
+				background-color: var(--color-red);
+			}
+		}
+	}
+}

@@ -1,0 +1,40 @@
+:root {
+	--site-w: 1160px;
+	--site-padding: 20px;
+	--space: 20px;
+
+	// ships
+	--ship-size: 40px;
+
+	// colors
+	--color-blue: #6495ed;
+	--color-red: #e57e7e;
+	--color-dark: #4D4E5B;
+	--color-light: #F0F0F1;
+	--color-gray: #C6C6CC;
+	--color-green: #49cb8f;
+}
+body {
+	font-family: 'Roboto', 'Arial', sans-serif;
+	min-height: 100vh;
+	background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+
+	& * {
+		box-sizing: border-box;
+		line-height: normal;
+	}
+}
+
+.container {
+	margin: 0 auto;
+	max-width: var(--site-w);
+	padding: var(--site-padding);
+}
+
+.main {
+	display: grid;
+	grid-template-columns: 1fr 200px;
+	gap: var(--space);
+}
+
+@import './elements/space';
