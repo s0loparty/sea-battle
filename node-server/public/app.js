@@ -18,7 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		item.dataset.cellEnemyId = cellId
 
 		item.addEventListener('click', () => {
+         if (item.dataset.hasClicked) return
+         
 			socket.emit('shot', { cellId, uuid: UUID })
+         item.dataset.hasClicked = true
 			showShot(cellId, 'enemy')
 		})
 	})
