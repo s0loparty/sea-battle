@@ -1,4 +1,23 @@
 .space {
+	&__header {
+		margin: 0 calc(var(--space) * 2);
+		font-weight: bold;
+		text-transform: uppercase;
+		color: var(--color-dark);
+		fill: var(--color-dark);
+
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+
+		& svg {
+			width: 32px;
+			height: 32px;
+		}
+
+		&--enemy {color: var(--color-red)}
+		&--player {color: var(--color-blue)}
+	}
 	&__wrap {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -23,7 +42,8 @@
 	&__box {
 		&--enemy {}
 		&--player .space__fight-item:hover {
-			background: var(--color-light);
+			background: var(--color-light) !important;
+			transform: unset !important;
 		}
 	}
 
@@ -91,9 +111,11 @@
 		box-shadow: inset 0 0 1px var(--color-dark);
 
 		position: relative;
+		transition: transform .3s;
 
-		&:hover {
+		&:hover:not([data-has-clicked]) {
 			background: var(--color-green);
+			transform: rotate(90deg);
 		}
 
 		&--miss {
@@ -102,10 +124,18 @@
 				content: '';
 				width: 20px;
 				height: 20px;
-				top: 10px;
-				left: 10px;
+				// top: 10px;
+				// left: 10px;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
 				border-radius: 50%;
 				background-color: var(--color-gray);
+
+				@media screen and (max-width: $bp-xsm) {
+					width: 15px;
+					height: 15px;
+				}
 			}
 		}
 		&--damage {
@@ -118,6 +148,11 @@
 				background-color: var(--color-dark);
 				top: 19px;
 				left: 9px;
+
+				@media screen and (max-width: $bp-xsm) {
+					top: 11px;
+					left: 2px;
+				}
 			}
 			&:before {
 				transform: rotate(45deg);
@@ -132,10 +167,16 @@
 				content: '';
 				width: 20px;
 				height: 20px;
-				top: 10px;
-				left: 10px;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
 				border-radius: 50%;
 				background-color: var(--color-red);
+
+				@media screen and (max-width: $bp-xsm) {
+					width: 15px;
+					height: 15px;
+				}
 			}
 		}
 	}

@@ -26,6 +26,10 @@ io.on('connection', socket => {
       socket.broadcast.emit('shot', payload)
       console.log('payload:', payload);
    })
+
+   socket.on('disconnect', () => {
+      socket.broadcast.emit('exit')
+   })
 })
 
 httpServer.listen(HTTP_PORT, () =>

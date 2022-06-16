@@ -31,6 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	socket.on('shot', payload => {
 		showShot(payload.cellId, 'player')
 	})
+
+   socket.on('exit', () => {
+      console.log('emited exit')
+      clearSpaces()
+   })
 })
 
 function createCell() {
@@ -53,4 +58,10 @@ function showShot(cellId, type = 'enemy') {
 	const classes = ['space__fight-item--miss', 'space__fight-item--damage', 'space__fight-item--killed']
 	const target = document.querySelector(`.space__fight-item[data-cell-${type}-id="${cellId}"]`)
 	target.classList.add(classes[Math.floor(Math.random() * classes.length)])
+}
+function clearSpaces() {
+   document.querySelectorAll('.space__fight-item').forEach(cell => {
+      cell.className = 'space__fight-item'
+      delete cell.dataset.hasClicked
+   })
 }

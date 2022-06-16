@@ -41,6 +41,30 @@ body * {
   }
 }
 
+.space__header {
+  margin: 0 calc(var(--space) * 2);
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--color-dark);
+  fill: var(--color-dark);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.space__header svg {
+  width: 32px;
+  height: 32px;
+}
+
+.space__header--enemy {
+  color: var(--color-red);
+}
+
+.space__header--player {
+  color: var(--color-blue);
+}
+
 .space__wrap {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -68,7 +92,8 @@ body * {
 }
 
 .space__box--player .space__fight-item:hover {
-  background: var(--color-light);
+  background: var(--color-light) !important;
+  transform: unset !important;
 }
 
 .space__number-list {
@@ -137,10 +162,12 @@ body * {
   background: var(--color-light);
   box-shadow: inset 0 0 1px var(--color-dark);
   position: relative;
+  transition: transform .3s;
 }
 
-.space__fight-item:hover {
+.space__fight-item:hover:not([data-has-clicked]) {
   background: var(--color-green);
+  transform: rotate(90deg);
 }
 
 .space__fight-item--miss:before {
@@ -148,10 +175,18 @@ body * {
   content: '';
   width: 20px;
   height: 20px;
-  top: 10px;
-  left: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 50%;
   background-color: var(--color-gray);
+}
+
+@media screen and (max-width: 575.98px) {
+  .space__fight-item--miss:before {
+    width: 15px;
+    height: 15px;
+  }
 }
 
 .space__fight-item--damage:before, .space__fight-item--damage:after {
@@ -163,6 +198,13 @@ body * {
   background-color: var(--color-dark);
   top: 19px;
   left: 9px;
+}
+
+@media screen and (max-width: 575.98px) {
+  .space__fight-item--damage:before, .space__fight-item--damage:after {
+    top: 11px;
+    left: 2px;
+  }
 }
 
 .space__fight-item--damage:before {
@@ -178,10 +220,18 @@ body * {
   content: '';
   width: 20px;
   height: 20px;
-  top: 10px;
-  left: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 50%;
   background-color: var(--color-red);
+}
+
+@media screen and (max-width: 575.98px) {
+  .space__fight-item--killed:before {
+    width: 15px;
+    height: 15px;
+  }
 }
 
 @media screen and (max-width: 1199.98px) {
@@ -206,7 +256,7 @@ body * {
   height: var(--ship-size);
   min-width: var(--ship-size);
   max-width: 300px;
-  background: #989898;
+  background: var(--color-green);
   cursor: grab;
 }
 
