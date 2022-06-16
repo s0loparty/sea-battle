@@ -15,6 +15,7 @@ body {
   font-family: 'Roboto', 'Arial', sans-serif;
   min-height: 100vh;
   background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+  font-size: 1rem;
 }
 
 body * {
@@ -34,6 +35,12 @@ body * {
   gap: var(--space);
 }
 
+@media screen and (max-width: 1199.98px) {
+  .main {
+    grid-template-columns: auto;
+  }
+}
+
 .space__wrap {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -41,9 +48,27 @@ body * {
   min-width: calc(var(--ship-size) * 11);
 }
 
+@media screen and (max-width: 991.98px) {
+  .space__wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 .space__inner-wrap {
   display: grid;
   grid-template-columns: 40px 1fr;
+}
+
+@media screen and (max-width: 575.98px) {
+  .space__inner-wrap {
+    grid-template-columns: 40 1fr;
+  }
+}
+
+.space__box--player .space__fight-item:hover {
+  background: var(--color-light);
 }
 
 .space__number-list {
@@ -53,6 +78,12 @@ body * {
   height: var(--ship-size);
 }
 
+@media screen and (max-width: 575.98px) {
+  .space__number-list {
+    padding-left: calc(var(--ship-size) + 15px);
+  }
+}
+
 .space__number-item {
   display: inline-flex;
   align-items: center;
@@ -60,6 +91,12 @@ body * {
   font-weight: bold;
   font-size: 1.2rem;
   color: var(--color-dark);
+}
+
+@media screen and (max-width: 575.98px) {
+  .space__number-item {
+    font-size: .8rem;
+  }
 }
 
 .space__latter-list {
@@ -76,6 +113,17 @@ body * {
   font-weight: bold;
   font-size: 1.2rem;
   color: var(--color-dark);
+}
+
+@media screen and (max-width: 575.98px) {
+  .space__latter-item {
+    font-size: .8rem;
+  }
+}
+
+.space__fight-wrap {
+  max-width: calc(var(--ship-size) * 10);
+  min-width: calc(var(--ship-size) * 10);
 }
 
 .space__fight-list {
@@ -136,8 +184,37 @@ body * {
   background-color: var(--color-red);
 }
 
+@media screen and (max-width: 1199.98px) {
+  .ships {
+    order: -1;
+  }
+}
+
+.ships__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--space) / 2);
+}
+
+@media screen and (max-width: 1199.98px) {
+  .ships__list {
+    justify-content: center;
+  }
+}
+
 .ships__item {
   height: var(--ship-size);
   min-width: var(--ship-size);
-  background: red;
+  max-width: 300px;
+  background: #989898;
+  cursor: grab;
+}
+
+@media screen and (max-width: 575.98px) {
+  :root {
+    --site-w: 1160px;
+    --site-padding: 20px;
+    --space: 10px;
+    --ship-size: 25px;
+  }
 }

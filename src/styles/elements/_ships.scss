@@ -1,10 +1,24 @@
 .ships {
+	@media screen and (max-width: $bp-lg) {
+		order: -1;
+	}
+
 	&__wrap { }
-	&__list { }
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: calc(var(--space) / 2);
+
+		@media screen and (max-width: $bp-lg) {
+			justify-content: center;
+		}
+	}
 	&__item {
 		height: var(--ship-size);
 		min-width: var(--ship-size);
+		max-width: 300px;
 
-		background: red;
+		background: #989898;
+		cursor: grab;
 	}
 }

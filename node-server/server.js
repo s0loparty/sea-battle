@@ -24,6 +24,7 @@ io.on('connection', socket => {
 
    socket.on('shot', payload => {
       socket.broadcast.emit('shot', payload)
+      console.log('payload:', payload);
    })
 })
 
